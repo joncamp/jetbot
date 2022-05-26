@@ -16,12 +16,15 @@ First, clone this repository onto your Jetson. The location doesn't matter.
 
 ### Using Docker directly
 ``` bash
-cd jetbot
-vcs import --recursive ws/src < jetbot.repos
+setup.sh
 Docker-compose -f Docker-compose.yaml up
 ```
 
-> NOTE: When using Git for repository actions, it is best to do it from outside the docker container, as there is a potential directory ownership issue when using git from within the container.
+### Using Docker directly
+``` bash
+docker exec -it jetbot_jetbot_1 /bin/bash
+/ws/src/build_src.sh
+```
 
 ### Using VSCode Dev containers
 Ensure that you have the remote extension pack installed.

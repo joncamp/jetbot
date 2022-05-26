@@ -3,6 +3,7 @@ FROM ros:foxy
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         python-is-python3 \
+        python3-pip \
 	libopencv-dev \
 	python3-opencv \
         libboost-all-dev \
@@ -13,7 +14,14 @@ RUN apt-get update && \
         libcurl4-openssl-dev \
         libssl-dev \
         curl \
-        libi2c-dev
+        libi2c-dev \
+        build-essential \
+        ros-$ROS_DISTRO-realsense2-camera \
+        ros-$ROS_DISTRO-realsense2-description
+
+ENV WORKSPACE_ROOT=/ws
+RUN echo 'source /opt/ros/foxy/setup.bash' >> /root/.bashrc && \
+    echo 'source /ws/src/install/local_setup.bash' >> /root/.bashrc
 
 #RUN pip3 install --upgrade pip
 #RUN pip3 install --upgrade setuptools
